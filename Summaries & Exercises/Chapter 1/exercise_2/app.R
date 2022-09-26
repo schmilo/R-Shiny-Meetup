@@ -8,8 +8,6 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   output$product <- renderText({ 
-    # the input$ was missing here:
-    # original x * 5
     input$x * 5
   })
 }

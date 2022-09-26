@@ -8,33 +8,18 @@ ui <- fluidPage(
   "and (x * y) + 10 is", textOutput("product_plus10")
 )
 
-# server <- function(input, output, session) {
-#   output$product <- renderText({ 
-#     product <- input$x * input$y
-#     product
-#   })
-#   output$product_plus5 <- renderText({ 
-#     product <- input$x * input$y
-#     product + 5
-#   })
-#   output$product_plus10 <- renderText({ 
-#     product <- input$x * input$y
-#     product + 10
-#   })
-# }
-
 server <- function(input, output, session) {
-  # Reduce duplication by using reactive
-  multiply <- reactive({input$x * input$y})
-  
+  product <- reactive({
+    input$x * input$y
+  })
   output$product <- renderText({ 
-    multiply()
+    product()
   })
   output$product_plus5 <- renderText({ 
-    multiply() + 5
+    product() + 5
   })
   output$product_plus10 <- renderText({ 
-    multiply() + 10
+    product() + 10
   })
 }
 
